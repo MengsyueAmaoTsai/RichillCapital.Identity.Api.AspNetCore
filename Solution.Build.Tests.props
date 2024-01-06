@@ -1,0 +1,13 @@
+<Project>
+  <Import Project="./Solution.Build.props" />
+
+  <PropertyGroup>
+    <IsPackable>false</IsPackable>
+    <IsTestProject>true</IsTestProject>
+  </PropertyGroup>
+
+  <PropertyGroup>
+      <nowarn>CA1707</nowarn>
+  </PropertyGroup>    
+  
+</Project>

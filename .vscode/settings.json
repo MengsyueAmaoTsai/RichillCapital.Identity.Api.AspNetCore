@@ -1,0 +1,16 @@
+{
+  "dotnet.defaultSolution": "RichillCapital.Identity.Api.sln",
+  "dotnet.server.useOmnisharp": true,
+  "[csharp]": {
+    "editor.formatOnSave": true,
+    "editor.codeActionsOnSave": {
+      "source.fixAll": "always"
+    },
+    "editor.defaultFormatter": "ms-dotnettools.csharp"
+  },
+  "[json][jsonc]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.formatOnSave": true
+  },
+  "cSpell.words": ["Mediat", "Quantower", "Richill"]
+}

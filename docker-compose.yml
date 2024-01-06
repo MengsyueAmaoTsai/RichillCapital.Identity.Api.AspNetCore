@@ -1,0 +1,8 @@
+version: '3.8'
+
+services:
+  richillcapital.identity.api:
+    image: ${DOCKER_REGISTRY-}richillcapitalidentityapi
+    build:
+      context: .
+      dockerfile: RichillCapital.Identity.Api\Dockerfile

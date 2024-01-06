@@ -1,0 +1,52 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{3EA2DE49-7946-4909-99B8-AF28E132B333}"
+	ProjectSection(SolutionItems) = preProject
+		.dockerignore = .dockerignore
+		.editorconfig = .editorconfig
+		.gitignore = .gitignore
+		docker-compose.override.yml = docker-compose.override.yml
+		docker-compose.yml = docker-compose.yml
+		Dockerfile = Dockerfile
+		LICENSE = LICENSE
+		Solution.Build.props = Solution.Build.props
+		Solution.Build.Tests.props = Solution.Build.Tests.props
+		Solution.Packages.props = Solution.Packages.props
+		Solution.ruleset = Solution.ruleset
+		stylecop.json = stylecop.json
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{E89AEAE5-84E7-4224-A011-9B04705A1E9B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RichillCapital.Identity.Api.EndToEndTests", "Tests\RichillCapital.Identity.Api.EndToEndTests\RichillCapital.Identity.Api.EndToEndTests.csproj", "{FD3C7390-4F5E-4698-AB34-60CD5D37EDE4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RichillCapital.Identity.Api", "RichillCapital.Identity.Api.csproj", "{F221A8D8-C9CA-4CE6-B6AC-ED50FF2E58EF}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{FD3C7390-4F5E-4698-AB34-60CD5D37EDE4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FD3C7390-4F5E-4698-AB34-60CD5D37EDE4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FD3C7390-4F5E-4698-AB34-60CD5D37EDE4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FD3C7390-4F5E-4698-AB34-60CD5D37EDE4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F221A8D8-C9CA-4CE6-B6AC-ED50FF2E58EF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F221A8D8-C9CA-4CE6-B6AC-ED50FF2E58EF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F221A8D8-C9CA-4CE6-B6AC-ED50FF2E58EF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F221A8D8-C9CA-4CE6-B6AC-ED50FF2E58EF}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{FD3C7390-4F5E-4698-AB34-60CD5D37EDE4} = {E89AEAE5-84E7-4224-A011-9B04705A1E9B}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {4EAAFA99-ECF6-454D-BA29-969D5B850F3C}
+	EndGlobalSection
+EndGlobal
