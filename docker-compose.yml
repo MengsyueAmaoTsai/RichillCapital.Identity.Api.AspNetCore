@@ -1,11 +1,13 @@
 version: '3.8'
 
 services:
-  richillcapital.identity.api:
+  identity-api:
     image: ${DOCKER_REGISTRY-}richillcapitalidentityapi
+    container_name: identity-api 
+    
     build:
       context: .
-      dockerfile: RichillCapital.Identity.Api\Dockerfile
+      dockerfile: Dockerfile
 
   mssql:
     image: mcr.microsoft.com/mssql/server:2022-latest
