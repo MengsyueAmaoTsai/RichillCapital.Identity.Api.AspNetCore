@@ -6,3 +6,14 @@ services:
     build:
       context: .
       dockerfile: RichillCapital.Identity.Api\Dockerfile
+
+  mssql:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    container_name: mssql
+
+    ports:
+      - 1433:1433
+    
+    environment:
+      - ACCEPT_EULA=Y
+      - SA_PASSWORD=Strong_Password    

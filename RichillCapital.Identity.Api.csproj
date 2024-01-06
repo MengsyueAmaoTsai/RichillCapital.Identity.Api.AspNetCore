@@ -2,7 +2,7 @@
   <Import Project="./Solution.Build.props"/>
 
   <PropertyGroup>
-    <InvariantGlobalization>true</InvariantGlobalization>
+    <InvariantGlobalization>false</InvariantGlobalization>
     <UserSecretsId>5e0b2a4d-1202-41db-82b9-be8cd6e86c82</UserSecretsId>
     <DockerDefaultTargetOS>Windows</DockerDefaultTargetOS>
     <DockerComposeProjectPath>..\docker-compose.dcproj</DockerComposeProjectPath>
