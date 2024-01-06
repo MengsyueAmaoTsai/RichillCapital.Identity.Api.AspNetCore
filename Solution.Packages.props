@@ -1,10 +1,12 @@
 <Project>
   <ItemGroup Condition="'$(Configuration)' == 'Debug'">
     <ProjectReference Include="..\RichillCapital.Infrastructure.CSharp\RichillCapital.Infrastructure.csproj" />
+    <ProjectReference Include="..\RichillCapital.Presentation.Abstractions.CSharp\RichillCapital.Presentation.Abstractions.csproj" />
   </ItemGroup>
 
   <ItemGroup Condition="'$(Configuration)' == 'Release'">
     <PackageReference Include="RichillCapital.Infrastructure" Version="1.5.2" />
+    <PackageReference Include="RichillCapital.Presentation.Abstractions" Version="1.0.1" />
   </ItemGroup>
   
   <ItemGroup>
