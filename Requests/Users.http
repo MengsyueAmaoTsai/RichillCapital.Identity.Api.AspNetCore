@@ -3,5 +3,20 @@
 ### List all users.
 GET {{HostAddress}}/api/users
 Accept: application/json
+Content-Type: application/json
 
-###
+### Get simulated accounts.
+GET {{HostAddress}}/api/users/1/accounts
+Accept: application/json
+Content-Type: application/json
+
+### Create simulated account.
+POST {{HostAddress}}/api/users/1/accounts
+Accept: application/json
+Content-Type: application/json
+
+{
+    "name": "Account from .http",
+    "currency": "TWD",
+    "initialCapital": 1000000
+}
