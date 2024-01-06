@@ -1,0 +1,7 @@
+@HostAddress = http://127.0.0.1:80
+
+### List all users.
+GET {{HostAddress}}/api/users
+Accept: application/json
+
+###
