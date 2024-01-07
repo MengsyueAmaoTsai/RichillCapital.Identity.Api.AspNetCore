@@ -5,9 +5,6 @@ using FluentAssertions;
 
 using Microsoft.AspNetCore.Mvc.Testing;
 
-using MongoDB.Driver;
-
-using RichillCapital.Core.Domain.Enumerations;
 using RichillCapital.Identity.Api.Endpoints.Bots;
 
 namespace RichillCapital.Identity.Api.EndToEndTests.ApiEndpoints.Bots;
