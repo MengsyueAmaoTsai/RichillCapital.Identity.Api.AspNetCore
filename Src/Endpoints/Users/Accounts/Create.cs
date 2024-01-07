@@ -1,5 +1,9 @@
+using MediatR;
+
 using Microsoft.AspNetCore.Mvc;
 
+using RichillCapital.Core.Features.Users.CreateSimulatedAccount;
+using RichillCapital.Identity.Api.Extensions;
 using RichillCapital.Presentation.Abstractions.AspNetCore;
 
 namespace RichillCapital.Identity.Api.Endpoints.Users.Accounts;
@@ -8,10 +12,26 @@ public sealed class Create : AsyncEndpoint
     .WithRequest<CreateSimulatedAccountRequest>
     .WithActionResult
 {
-    [HttpPost("/api/users/{userId}/accounts")]
-    public override Task<ActionResult> HandleAsync(CreateSimulatedAccountRequest request, CancellationToken cancellationToken = default)
+    private readonly ISender _sender;
+
+    public Create(ISender sender)
     {
-        throw new NotImplementedException();
+        _sender = sender;
+    }
+
+    [HttpPost("/api/users/{userId}/accounts")]
+    public override async Task<ActionResult> HandleAsync(
+        CreateSimulatedAccountRequest request,
+        CancellationToken cancellationToken = default)
+    {
+        var command = new CreateSimulatedAccountCommand(
+            request.UserId,
+            request.Body.Name,
+            request.Body.Currency,
+            request.Body.InitialBalance);
+
+        return (await _sender.Send(command, cancellationToken))
+            .Match(Ok, HandleFailure);
     }
 }
 
