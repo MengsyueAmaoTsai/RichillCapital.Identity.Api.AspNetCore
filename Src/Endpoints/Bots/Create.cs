@@ -33,12 +33,12 @@ public sealed class Create : AsyncEndpoint
             request.Description,
             request.TradingPlatform);
 
-        var result = await _sender.Send(command, cancellationToken);
+        var errorOr = await _sender.Send(command, cancellationToken);
 
-        return result
+        return errorOr
             .Match(
-                value => CreatedAtRoute(new { BotId = value.Value }, new { BotId = value.Value }),
-                HandleFailure);
+                HandleFailure,
+                value => CreatedAtRoute(new { BotId = value.Value }, new { BotId = value.Value }));
     }
 }
 
