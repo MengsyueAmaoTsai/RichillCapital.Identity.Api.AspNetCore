@@ -21,7 +21,7 @@ public sealed class Get : AsyncEndpoint
         _sender = sender;
     }
 
-    [HttpGet("/api/bots/{botId}")]
+    [HttpGet("/api/bots/{botId}", Name = "GetBotById")]
     [SwaggerOperation(OperationId = "Bots.Get", Tags = ["Bots"])]
     public override async Task<ActionResult> HandleAsync(
         [FromRoute] GetBotRequest request,

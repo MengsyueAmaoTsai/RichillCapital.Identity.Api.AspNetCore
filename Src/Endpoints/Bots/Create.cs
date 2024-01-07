@@ -36,7 +36,9 @@ public sealed class Create : AsyncEndpoint
         var result = await _sender.Send(command, cancellationToken);
 
         return result
-            .Match(Ok, HandleFailure);
+            .Match(
+                value => CreatedAtRoute(new { BotId = value.Value }, new { BotId = value.Value }),
+                HandleFailure);
     }
 }
 

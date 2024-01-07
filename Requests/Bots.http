@@ -6,8 +6,32 @@ Accept: application/json
 Content-Type: application/json
 
 {
-  "botId": "",
+  "botId": "123",
   "name": "asds",
   "description": "asdaab",
   "tradingPlatform": "xq"
+}
+
+### Get bot by id
+GET {{HostAddress}}/api/bots/123
+Accept: application/json
+Content-Type: application/json
+
+{
+
+}
+
+### List all bots
+GET {{HostAddress}}/api/bots
+Accept: application/json
+Content-Type: application/json
+
+
+### Delete bot
+DELETE {{HostAddress}}/api/bots/123
+Accept: application/json
+Content-Type: application/json
+
+{
+
 }

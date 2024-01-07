@@ -45,4 +45,100 @@ public sealed class CreateBotTests
         response.IsSuccessStatusCode.Should().BeFalse();
         response.StatusCode.Should().Be(HttpStatusCode.BadRequest);
     }
+
+    [TestMethod]
+    public async Task When_NameIsEmpty_Should_Return_400()
+    {
+        // Act
+        using var client = _factory.CreateClient();
+        var response = await client.PostAsJsonAsync(
+            Route,
+            Request with { Name = string.Empty });
+
+        // Assert
+        response.IsSuccessStatusCode.Should().BeFalse();
+        response.StatusCode.Should().Be(HttpStatusCode.BadRequest);
+    }
+
+    [TestMethod]
+    public async Task When_DescriptionIsEmpty_Should_Return_400()
+    {
+        // Act
+        using var client = _factory.CreateClient();
+        var response = await client.PostAsJsonAsync(
+            Route,
+            Request with { Name = string.Empty });
+
+        // Assert
+        response.IsSuccessStatusCode.Should().BeFalse();
+        response.StatusCode.Should().Be(HttpStatusCode.BadRequest);
+    }
+
+    [TestMethod]
+    public async Task When_TradingPlatformIsInvalid_Should_Return_400()
+    {
+        // Act
+        using var client = _factory.CreateClient();
+        var response = await client.PostAsJsonAsync(
+            Route,
+            Request with { TradingPlatform = string.Empty });
+
+        // Assert
+        response.IsSuccessStatusCode.Should().BeFalse();
+        response.StatusCode.Should().Be(HttpStatusCode.BadRequest);
+    }
+
+    [TestMethod]
+    public async Task When_BotIdIsNotUnique_Should_Return_409()
+    {
+        // Act
+        using var client = _factory.CreateClient();
+        _ = await client.PostAsJsonAsync(
+            Route,
+            Request);
+
+        var response = await client.PostAsJsonAsync(
+            Route,
+            Request with { Name = "Name2" });
+
+        // Assert
+        response.IsSuccessStatusCode.Should().BeFalse();
+        response.StatusCode.Should().Be(HttpStatusCode.Conflict);
+    }
+
+    [TestMethod]
+    public async Task When_NameIsNotUnique_Should_Return_409()
+    {
+        // Act
+        using var client = _factory.CreateClient();
+        _ = await client.PostAsJsonAsync(
+            Route,
+            Request);
+
+        var response = await client.PostAsJsonAsync(
+            Route,
+            Request with { BotId = "BotId2" });
+
+        // Assert
+        response.IsSuccessStatusCode.Should().BeFalse();
+        response.StatusCode.Should().Be(HttpStatusCode.Conflict);
+    }
+
+    [TestMethod]
+    public async Task When_IdAndNameIsUnique_Should_Return_201()
+    {
+        // Act
+        using var client = _factory.CreateClient();
+        _ = await client.PostAsJsonAsync(
+            Route,
+            Request);
+
+        var response = await client.PostAsJsonAsync(
+            Route,
+            Request with { BotId = "BotId3", Name = "Name2" });
+
+        // Assert
+        response.IsSuccessStatusCode.Should().BeTrue();
+        response.StatusCode.Should().Be(HttpStatusCode.Created);
+    }
 }
