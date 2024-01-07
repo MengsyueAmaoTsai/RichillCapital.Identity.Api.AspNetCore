@@ -9,8 +9,8 @@ public static class ErrorOrExtensions
     public static ActionResult Match<TValue>(
         this ErrorOr<TValue> errorOr,
         Func<Error, ActionResult> onError,
-        Func<TValue, ActionResult> onNoError)
-    {
-        return errorOr.HasError ? onError(errorOr.Error) : onNoError(errorOr.Value);
-    }
+        Func<TValue, ActionResult> onNoError) =>
+        errorOr.HasError ?
+        onError(errorOr.Error) :
+        onNoError(errorOr.Value);
 }

@@ -10,18 +10,14 @@ public sealed class RequestContextLoggingMiddleware : IMiddleware
 
     public Task InvokeAsync(HttpContext context, RequestDelegate next)
     {
-        string correlationId = GetCorrelationId(context);
+        context.Request.Headers
+            .TryGetValue(CorrelationIdHeaderName, out StringValues correlationId);
 
-        using (LogContext.PushProperty("CorrelationId", correlationId))
+        using (LogContext.PushProperty(
+            "CorrelationId",
+            correlationId.FirstOrDefault() ?? context.TraceIdentifier))
         {
             return next.Invoke(context);
         }
-    }
-
-    private static string GetCorrelationId(HttpContext context)
-    {
-        context.Request.Headers.TryGetValue(CorrelationIdHeaderName, out StringValues correlationId);
-
-        return correlationId.FirstOrDefault() ?? context.TraceIdentifier;
     }
 }
