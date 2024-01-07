@@ -9,7 +9,7 @@ using Swashbuckle.AspNetCore.Annotations;
 namespace RichillCapital.Identity.Api.Endpoints.Bots;
 
 public sealed class Get : AsyncEndpoint
-    .WithRequest<string>
+    .WithRequest<GetBotRequest>
     .WithActionResult
 {
     private readonly ISender _sender;
@@ -19,10 +19,16 @@ public sealed class Get : AsyncEndpoint
         _sender = sender;
     }
 
-    [HttpDelete("/api/bots/{botId}")]
+    [HttpGet("/api/bots/{botId}")]
     [SwaggerOperation(OperationId = "Bots.Get", Tags = ["Bots"])]
-    public override Task<ActionResult> HandleAsync(string request, CancellationToken cancellationToken = default)
+    public override Task<ActionResult> HandleAsync(GetBotRequest request, CancellationToken cancellationToken = default)
     {
         throw new NotImplementedException();
     }
+}
+
+public sealed record class GetBotRequest
+{
+    [FromRoute(Name = "botId")]
+    public string BotId { get; init; }
 }

@@ -19,7 +19,7 @@ public sealed class Update : AsyncEndpoint
         _sender = sender;
     }
 
-    [HttpDelete("/api/bots/{botId}")]
+    [HttpPatch("/api/bots/{botId}")]
     [SwaggerOperation(OperationId = "Bots.Update", Tags = ["Bots"])]
     public override Task<ActionResult> HandleAsync(CancellationToken cancellationToken = default)
     {

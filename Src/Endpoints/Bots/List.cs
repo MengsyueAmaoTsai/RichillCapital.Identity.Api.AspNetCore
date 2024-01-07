@@ -19,7 +19,7 @@ public sealed class List : AsyncEndpoint
         _sender = sender;
     }
 
-    [HttpDelete("/api/bots")]
+    [HttpGet("/api/bots")]
     [SwaggerOperation(OperationId = "Bots.List", Tags = ["Bots"])]
     public override Task<ActionResult> HandleAsync(CancellationToken cancellationToken = default)
     {
