@@ -17,27 +17,18 @@ public sealed class List : AsyncEndpoint
 {
     private readonly ISender _sender;
 
-    public List(ISender sender)
-    {
-        _sender = sender;
-    }
+    public List(ISender sender) => _sender = sender;
 
     [HttpGet("/api/users")]
     [SwaggerOperation(OperationId = "Users.List", Tags = ["Users"])]
-    public override async Task<ActionResult<IEnumerable<UserResponse>>> HandleAsync(CancellationToken cancellationToken = default)
-    {
-        var query = new ListUsersQuery();
-
-        var result = await _sender.Send(query, cancellationToken);
-
-        return result
+    public override async Task<ActionResult<IEnumerable<UserResponse>>> HandleAsync(CancellationToken cancellationToken = default) =>
+        (await _sender.Send(new ListUsersQuery(), cancellationToken))
             .Map(users => users
                 .Select(user => new UserResponse(
                     user.Id,
                     user.Email,
                     user.Name)))
             .Match(Ok, HandleFailure);
-    }
 }
 
 public sealed record UserResponse(string Id, string Email, string Name);

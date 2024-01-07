@@ -16,20 +16,11 @@ public sealed class List : AsyncEndpoint
 {
     private readonly ISender _sender;
 
-    public List(ISender sender)
-    {
-        _sender = sender;
-    }
+    public List(ISender sender) => _sender = sender;
 
     [HttpGet("/api/bots")]
     [SwaggerOperation(OperationId = "Bots.List", Tags = ["Bots"])]
-    public override async Task<ActionResult> HandleAsync(CancellationToken cancellationToken = default)
-    {
-        var query = new ListBotsQuery();
-
-        var result = await _sender.Send(query, cancellationToken);
-
-        return result
+    public override async Task<ActionResult> HandleAsync(CancellationToken cancellationToken = default) =>
+        (await _sender.Send(new ListBotsQuery(), cancellationToken))
             .Match(Ok, HandleFailure);
-    }
 }

@@ -16,10 +16,7 @@ public sealed class Create : AsyncEndpoint
 {
     private readonly ISender _sender;
 
-    public Create(ISender sender)
-    {
-        _sender = sender;
-    }
+    public Create(ISender sender) => _sender = sender;
 
     [HttpPost("/api/signals")]
     [SwaggerOperation(OperationId = "Signals.Create", Tags = ["Signals"])]
@@ -34,9 +31,7 @@ public sealed class Create : AsyncEndpoint
             request.Quantity,
             request.Price);
 
-        var result = await _sender.Send(command, cancellationToken);
-
-        return result
+        return (await _sender.Send(command, cancellationToken))
             .Match(Ok, HandleFailure);
     }
 }

@@ -16,10 +16,7 @@ public sealed class Get : AsyncEndpoint
 {
     private readonly ISender _sender;
 
-    public Get(ISender sender)
-    {
-        _sender = sender;
-    }
+    public Get(ISender sender) => _sender = sender;
 
     [HttpGet("/api/bots/{botId}", Name = "GetBotById")]
     [SwaggerOperation(OperationId = "Bots.Get", Tags = ["Bots"])]

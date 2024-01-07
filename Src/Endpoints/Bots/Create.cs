@@ -16,10 +16,7 @@ public sealed class Create : AsyncEndpoint
 {
     private readonly ISender _sender;
 
-    public Create(ISender sender)
-    {
-        _sender = sender;
-    }
+    public Create(ISender sender) => _sender = sender;
 
     [HttpPost("/api/bots")]
     [SwaggerOperation(OperationId = "Bots.Create", Tags = ["Bots"])]
@@ -33,12 +30,12 @@ public sealed class Create : AsyncEndpoint
             request.Description,
             request.TradingPlatform);
 
-        var errorOr = await _sender.Send(command, cancellationToken);
-
-        return errorOr
+        return (await _sender.Send(command, cancellationToken))
             .Match(
                 HandleFailure,
-                value => CreatedAtRoute(new { BotId = value.Value }, new { BotId = value.Value }));
+                botId => CreatedAtRoute(
+                    new { BotId = botId.Value },
+                    new { BotId = botId.Value }));
     }
 }
 

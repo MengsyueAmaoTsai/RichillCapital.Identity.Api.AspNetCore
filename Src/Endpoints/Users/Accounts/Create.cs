@@ -16,10 +16,7 @@ public sealed class Create : AsyncEndpoint
 {
     private readonly ISender _sender;
 
-    public Create(ISender sender)
-    {
-        _sender = sender;
-    }
+    public Create(ISender sender) => _sender = sender;
 
     [HttpPost("/api/users/{userId}/accounts")]
     [SwaggerOperation(OperationId = "Users.Accounts.Create", Tags = ["Users"])]

@@ -14,10 +14,7 @@ public sealed class Update : AsyncEndpoint
 {
     private readonly ISender _sender;
 
-    public Update(ISender sender)
-    {
-        _sender = sender;
-    }
+    public Update(ISender sender) => _sender = sender;
 
     [HttpPatch("/api/bots/{botId}")]
     [SwaggerOperation(OperationId = "Bots.Update", Tags = ["Bots"])]
