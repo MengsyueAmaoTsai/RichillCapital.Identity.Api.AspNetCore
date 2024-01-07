@@ -1,0 +1,13 @@
+@HostAddress = http://127.0.0.1:80
+
+### Create bot.
+POST {{HostAddress}}/api/bots
+Accept: application/json
+Content-Type: application/json
+
+{
+  "botId": "asdasfasfs",
+  "name": "asds",
+  "description": "asdaab",
+  "tradingPlatform": "xq"
+}

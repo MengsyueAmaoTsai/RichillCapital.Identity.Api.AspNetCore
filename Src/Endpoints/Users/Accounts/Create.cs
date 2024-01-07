@@ -6,6 +6,8 @@ using RichillCapital.Core.Features.Users.CreateSimulatedAccount;
 using RichillCapital.Identity.Api.Extensions;
 using RichillCapital.Presentation.Abstractions.AspNetCore;
 
+using Swashbuckle.AspNetCore.Annotations;
+
 namespace RichillCapital.Identity.Api.Endpoints.Users.Accounts;
 
 public sealed class Create : AsyncEndpoint
@@ -20,6 +22,7 @@ public sealed class Create : AsyncEndpoint
     }
 
     [HttpPost("/api/users/{userId}/accounts")]
+    [SwaggerOperation(OperationId = "Users.Accounts.Create", Tags = ["Users"])]
     public override async Task<ActionResult> HandleAsync(
         CreateSimulatedAccountRequest request,
         CancellationToken cancellationToken = default)
