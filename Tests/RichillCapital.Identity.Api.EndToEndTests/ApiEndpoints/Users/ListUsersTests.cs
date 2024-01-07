@@ -10,7 +10,7 @@ using RichillCapital.Identity.Api.Endpoints.Users;
 namespace RichillCapital.Identity.Api.EndToEndTests.ApiEndpoints.Users;
 
 [TestClass]
-public sealed class CreateSimulatedAccountTests
+public sealed class ListUsersTests
 {
     private const string Route = "/api/users";
 
