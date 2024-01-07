@@ -38,9 +38,11 @@ public sealed class DeleteBotTests
     [TestMethod]
     public async Task When_BotNotFound_Should_Return_404()
     {
+        // Act
         using var client = _factory.CreateClient();
         var response = await client.DeleteAsync(Route + $"/{123}", default);
 
+        // Assert
         response.IsSuccessStatusCode.Should().BeFalse();
         response.StatusCode.Should().Be(HttpStatusCode.NotFound);
     }
@@ -48,12 +50,14 @@ public sealed class DeleteBotTests
     [TestMethod]
     public async Task When_BotFound_Should_Return_204()
     {
+        // Arrange
         using var client = _factory.CreateClient();
-
         _ = await client.PostAsJsonAsync(Route, CreateBotRequest);
 
+        // Act
         var response = await client.DeleteAsync(Route + $"/{CreateBotRequest.BotId}", default);
 
+        // Assert
         response.IsSuccessStatusCode.Should().BeTrue();
         response.StatusCode.Should().Be(HttpStatusCode.NoContent);
     }
