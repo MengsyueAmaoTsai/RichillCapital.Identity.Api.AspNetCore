@@ -1,5 +1,5 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk.Web">
-  <Import Project="./Solution.Build.props"/>
+  <Import Project="./Solution.Build.props" />
 
   <PropertyGroup>
     <InvariantGlobalization>false</InvariantGlobalization>
@@ -9,9 +9,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="coverage\**" />
     <Compile Remove="Tests\**" />
+    <Content Remove="coverage\**" />
     <Content Remove="Tests\**" />
+    <EmbeddedResource Remove="coverage\**" />
     <EmbeddedResource Remove="Tests\**" />
+    <None Remove="coverage\**" />
     <None Remove="Tests\**" />
   </ItemGroup>
 
