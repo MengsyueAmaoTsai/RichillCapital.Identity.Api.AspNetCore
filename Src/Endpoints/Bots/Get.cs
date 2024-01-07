@@ -2,6 +2,8 @@ using MediatR;
 
 using Microsoft.AspNetCore.Mvc;
 
+using RichillCapital.Core.Features.Bots.GetById;
+using RichillCapital.Identity.Api.Extensions;
 using RichillCapital.Presentation.Abstractions.AspNetCore;
 
 using Swashbuckle.AspNetCore.Annotations;
@@ -21,10 +23,11 @@ public sealed class Get : AsyncEndpoint
 
     [HttpGet("/api/bots/{botId}")]
     [SwaggerOperation(OperationId = "Bots.Get", Tags = ["Bots"])]
-    public override Task<ActionResult> HandleAsync(GetBotRequest request, CancellationToken cancellationToken = default)
-    {
-        throw new NotImplementedException();
-    }
+    public override async Task<ActionResult> HandleAsync(
+        [FromRoute] GetBotRequest request,
+        CancellationToken cancellationToken = default) =>
+        (await _sender.Send(new GetBotByIdQuery(request.BotId), cancellationToken))
+            .Match(Ok, HandleFailure);
 }
 
 public sealed record class GetBotRequest
