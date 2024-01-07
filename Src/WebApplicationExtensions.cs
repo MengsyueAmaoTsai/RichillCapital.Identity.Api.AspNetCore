@@ -1,6 +1,7 @@
 using Microsoft.OpenApi.Models;
 
 using RichillCapital.Core.Features;
+using RichillCapital.Identity.Api.Middlewares;
 using RichillCapital.Infrastructure.Persistence;
 
 using Serilog;
@@ -24,13 +25,14 @@ public static class WebApplicationExtensions
 
     public static Task<WebApplication> ConfigurePipeline(this WebApplication app)
     {
+        app.UseMiddleware<RequestContextLoggingMiddleware>();
         app.UseSerilogRequestLogging();
 
         app
             .UseSwagger()
             .UseSwaggerUI();
 
-        // app.UseMiddleware<GlobalExceptionHandlingMiddleware>();
+        app.UseMiddleware<GlobalExceptionHandlingMiddleware>();
         app.MapControllers();
 
         app.UseSeedData();
@@ -105,6 +107,9 @@ public static class WebApplicationExtensions
 
     private static IServiceCollection AddMiddlewares(this IServiceCollection services)
     {
+        services.AddTransient<GlobalExceptionHandlingMiddleware>();
+        services.AddTransient<RequestContextLoggingMiddleware>();
+
         return services;
     }
 }

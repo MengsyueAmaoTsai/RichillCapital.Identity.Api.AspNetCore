@@ -6,7 +6,7 @@ Accept: application/json
 Content-Type: application/json
 
 {
-  "botId": "asdasfasfs",
+  "botId": "",
   "name": "asds",
   "description": "asdaab",
   "tradingPlatform": "xq"
