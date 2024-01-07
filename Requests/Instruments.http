@@ -1,0 +1,6 @@
+@HostAddress = http://127.0.0.1:80
+
+### List all instruments.
+GET {{HostAddress}}/api/instruments
+Accept: application/json
+Content-Type: application/json
